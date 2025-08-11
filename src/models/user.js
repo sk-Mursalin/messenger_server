@@ -32,7 +32,11 @@ const userSchema = mongoose.Schema({
     age: {
         type: Number,
         min: 18
-    }
+    },
+      photoUrl: {
+        type: String,
+        default: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRISuukVSb_iHDfPAaDKboFWXZVloJW9XXiwGYFab-QwlAYQ3zFsx4fToY9ijcVNU5ieKk&usqp=CAU"
+    },
 }, { timeStamps: true });
 
 const UserMOdel = mongoose.model("User", userSchema);

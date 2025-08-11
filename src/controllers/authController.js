@@ -19,8 +19,10 @@ const signupUser = async (req, res) => {
             email,
             password: hashPassword
         });
-        await user.save()
-        res.status(201).json({ message: "account created succesfully" });
+        await user.save();
+        const token = jwt.sign({ _id: user._id }, "937@msk");
+        res.cookie("token", token, { maxAge: 2 * 24 * 60 * 60 * 1000 })
+        res.status(201).json({ data: user });
 
     } catch (err) {
         res.status(400).json({ message: err.message });
