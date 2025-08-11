@@ -3,7 +3,7 @@ const UserMOdel = require("../models/user")
 const viewProfile = async (req, res) => {
     try {
         const userEmail = req.userData.email
-        const profile = await UserMOdel.findOne({ email: userEmail }).select("-password -email")
+        const profile = await UserMOdel.findOne({ email: userEmail }).select("-password -email");
         if (!profile) {
             throw new Error("user not found")
         }

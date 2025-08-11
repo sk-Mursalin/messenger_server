@@ -31,7 +31,7 @@ const loginUser = async (req, res) => {
     const { email, password } = req.body
     try {
         loginValidation(req);
-        const user = await User.findOne({ email: email });
+        const user = await User.findOne({ email: email })
         if (!user) {
             throw new Error("please create an account  before login!")
         }
@@ -43,7 +43,7 @@ const loginUser = async (req, res) => {
 
         const token = jwt.sign({ _id: user._id }, "937@msk");
         res.cookie("token", token, { maxAge: 2 * 24 * 60 * 60 * 1000 })
-        res.status(200).json({ message: "welcome to messenger" })
+        res.status(200).json({ data: user })
     } catch (err) {
         res.status(400).json({ message: err.message })
     }
