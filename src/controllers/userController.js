@@ -2,7 +2,10 @@ const UserMOdel = require("../models/user")
 
 const allUsers = async (req, res) => {
     try {
-        const users = await UserMOdel.find({}).select("-password -email");
+        const userId = req.userData._id
+        const users = await UserMOdel.find({
+            _id: { $ne: userId }
+        }).select("-password -email");
         if (!users) {
             throw new Error("no user found")
         }
