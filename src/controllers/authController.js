@@ -4,7 +4,7 @@ const { signupValidation, loginValidation } = require("../utils/validation");
 const User = require("../models/user")
 
 const signupUser = async (req, res) => {
-    const { firstName, lastName, email, password } = req.body
+    const { firstName, lastName, email, password, photoUrl } = req.body
 
     try {
         signupValidation(req);
@@ -17,6 +17,7 @@ const signupUser = async (req, res) => {
             firstName,
             lastName,
             email,
+            photoUrl,
             password: hashPassword
         });
         await user.save();

@@ -36,7 +36,7 @@ const initSocket = (server) => {
                     });
 
                     await chat.save();
-                    io.to(room).emit("messageReceived", { firstName, lastName, text });
+                    io.to(room).emit("messageReceived", { firstName, lastName, text, createdAt: new Date() });
                 } catch (err) {
                     console.log(err);
                 }
